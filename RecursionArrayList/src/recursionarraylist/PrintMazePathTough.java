@@ -21,15 +21,26 @@ public class PrintMazePathTough {
         if(cc>dc || cr>dr)
             return;
         
-        for(int i=1;i<dc+1;i++)
+//        for(int i=1;i<=dc+1;i++)
+//         pmpt(cr,cc+i,dr,dc,sol+"H"+i);
+//        
+//        
+//       for(int i=1;i<dr+1;i++)
+//         pmpt(cr+i,cc,dr,dc,sol+"V"+i);
+//        
+//        
+//      for(int i=1;i<dr+1&&i<dc+1;i++)
+//        pmpt(cr+i,cc+i,dr,dc,sol+"D"+i);
+      
+      for(int i=1;i<=dc-cc;i++)
          pmpt(cr,cc+i,dr,dc,sol+"H"+i);
         
         
-       for(int i=1;i<dr+1;i++)
+       for(int i=1;i<=dr-cr;i++)
          pmpt(cr+i,cc,dr,dc,sol+"V"+i);
         
         
-      for(int i=1;i<dr+1&&i<dc+1;i++)
+      for(int i=1;i<=dr-cr&&i<=dc-cc;i++)
         pmpt(cr+i,cc+i,dr,dc,sol+"D"+i);
                
 
@@ -40,7 +51,6 @@ public class PrintMazePathTough {
     pmpt(0,0,2,2,"");
     
     }
-    
     
     
 }

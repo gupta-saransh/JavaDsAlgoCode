@@ -25,7 +25,7 @@ public class PrintMazePath {
     public static void main(String args[])
     {
     
-    pmp(0,0,1,1," ");
+    pmp(0,0,10,10," ");
     
     }
     
