@@ -156,7 +156,7 @@ public class NQueensNxNBoard2N {
         }
         return true;
     }
-    
+    static int count =0;
     static void queenow(boolean[][] board,int qpsf,String asf,int tq,int cb)
     {
         if(cb==board.length*board[0].length)
@@ -164,7 +164,7 @@ public class NQueensNxNBoard2N {
             if(qpsf==tq)
             { 
                    System.out.println(asf);
-                   
+                   count++;
                 
               
             }   
@@ -184,8 +184,9 @@ public class NQueensNxNBoard2N {
     }
     public static void main(String args[])
     {
-    boolean board[][] = new boolean[4][4];
-    queenow(board,0,"",4,0);
+    boolean board[][] = new boolean[8][8];
+    queenow(board,0,"",8,0);
+    System.out.print(count);
     
     }
     
