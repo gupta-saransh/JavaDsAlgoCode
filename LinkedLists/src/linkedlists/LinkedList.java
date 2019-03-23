@@ -548,13 +548,13 @@ public class LinkedList {
           {
           break;
           }
-          else if(temp1!=null && temp2==null)
+          else if( temp2==null)
           {
           
           this.addlast(temp1.data);
           temp1=temp1.next;
           }
-          else if(temp2!=null && temp1==null)
+          else if( temp1==null)
           {
               this.addlast(temp2.data);
               temp2=temp2.next;
@@ -578,6 +578,27 @@ public class LinkedList {
   
   
   
+  }
+  private LinkedList mergeSort(Node sp,Node ep)
+  {
+      if(ep==sp)
+      {
+          LinkedList l= new LinkedList();
+          int data=sp.data;
+          l.addlast(data);
+          return l;
+      }
+      LinkedList l3 = new LinkedList();
+  LinkedList l1=mergeSort(sp,midNode(sp,ep));
+  LinkedList l2=mergeSort(midNode(sp,ep).next,ep);
+   // LinkedList l3 = new LinkedList();
+    l3.mergeTwoLinkedList(l1, l2);
+      return l3;
+  }
+  public LinkedList mergeSort()
+  {
+  LinkedList res = mergeSort(this.head,this.tail);
+  return res;
   }
             
     public static void main(String[] args) {

@@ -15,17 +15,16 @@ public class ReverseDataIteratively {
     public static void main(String args[])
     {
     LinkedList l1= new LinkedList();
-    LinkedList l2 = new LinkedList();
-    l1.addlast(10);
-    l1.addlast(30);
+    
+    l1.addlast(70);
+    l1.addlast(60);
     l1.addlast(50);
-    l2.addlast(20);
-   l2.addlast(40);
-   l2.addlast(60);
-LinkedList l3 = new LinkedList();
-   l3.mergeTwoLinkedList(l1,l2);
+    l1.addlast(40);
 
-    l3.display();
+  LinkedList l3 = l1.mergeSort();
+   l3.display();
+   System.out.println();
+    l1.display();
     
 
     
