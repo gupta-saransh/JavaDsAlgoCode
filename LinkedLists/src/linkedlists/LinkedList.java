@@ -493,13 +493,9 @@ public class LinkedList {
     this.size=odd.size+even.size;
   
   
-  }
-  
-  
-  
-   
-    
+  } 
     }
+    
     private Node midNode(Node start,Node end)
     {
         Node slow=start;
@@ -600,7 +596,29 @@ public class LinkedList {
   LinkedList res = mergeSort(this.head,this.tail);
   return res;
   }
-            
+//  private int addLinkedList(Node l1,Node l2,int size1,int size2,LinkedList temp,LinkedList result)
+//  {
+//  
+// if(size1>size2){
+// addLinkedList(l1.next,l2.next,size1-1,size2-1);
+// }
+// if(size1==size2)
+// {
+//    result.addfirst(l1.data+l2.data);
+// }
+//  
+//  
+//  
+//  }
+//  public void addLinkedList(LinkedList l1,LinkedList l2,)
+//  {
+//      
+//      
+//      
+//  }
+//      
+  
+  
     public static void main(String[] args) {
         // TODO code application logic here
         LinkedList List = new LinkedList(); 

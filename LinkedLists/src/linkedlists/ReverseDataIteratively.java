@@ -20,6 +20,7 @@ public class ReverseDataIteratively {
     l1.addlast(60);
     l1.addlast(50);
     l1.addlast(40);
+    l1.addlast(20);
 
   LinkedList l3 = l1.mergeSort();
    l3.display();
