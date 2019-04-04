@@ -179,33 +179,265 @@ public class BinaryTree {
          h=Math.max(h, rs);
 
        }
-        
+       
        h++;
     return h;
 
     }
-      
-      
-      void kfar(Node root)
+      boolean find(Node root,int tbf)
       {
-      
+          int current=root.data;
+          boolean var = false;
+          if(current==tbf)
+              return true;
+          if(root.left!=null)
+          {
+              var=find(root.left,tbf);
+              if(var==true)
+                  return true;
           
+          
+          }
+       if(root.right!=null)
+          {
+              var=find(root.right,tbf);
+              if(var==true)
+                  return true;
+          
+          
+          }
+
+      return var;
+      }
+      
+  ArrayList<Integer> nodeTorootpath(Node root,int tbf)
+  {
+      if(root.data==tbf)
+        {
+            ArrayList<Integer> br= new ArrayList<>();
+            br.add(root.data);
+            return br;
+        
+         }
+      if(root.left!=null)
+      {
+      ArrayList<Integer> n2cpath=nodeTorootpath(root.left,tbf);
+               if(n2cpath!=null)
+               {
+                   n2cpath.add(root.data);
+                   return n2cpath;
+               }
       
       
       }
+       if(root.right!=null)
+      {
+      ArrayList<Integer> n2cpath=nodeTorootpath(root.right,tbf);
+               if(n2cpath!=null)
+               {
+                   n2cpath.add(root.data);
+                   return n2cpath;
+               }
+      
+      
+      }
+  
+  
+  
+  return null;
+  }
+   ArrayList<Node> nodeTorootpath2(Node root,int tbf)
+  {
+      if(root.data==tbf)
+        {
+            ArrayList<Node> br= new ArrayList<>();
+            br.add(root);
+            return br;
+        
+         }
+      if(root.left!=null)
+      {
+      ArrayList<Node> n2cpath=nodeTorootpath2(root.left,tbf);
+               if(n2cpath!=null)
+               {
+                   n2cpath.add(root);
+                   return n2cpath;
+               }
+      
+      
+      }
+       if(root.right!=null)
+      {
+      ArrayList<Node> n2cpath=nodeTorootpath2(root.right,tbf);      // to get node to root path
+               if(n2cpath!=null)
+               {
+                   n2cpath.add(root);
+                   return n2cpath;
+               }
+      
+      
+      }
+  
+  
+  
+  return null;
+  }
+    void kdown(Node root,Node pbt,int k)
+    {
+        if(root==pbt)
+            return;
+        
+        if(k==0)
+        {
+        System.out.print(root.data+" ");
+        return;
+        
+        }
+        if(root!=null)
+        {
+        if(root.left!=null)
+        {
+        kdown(root.left,pbt,k-1);
+        
+        }
+        if(root.right!=null)
+        {
+        kdown(root.right,pbt,k-1);
+        
+        }
+        }
+
+
+    }
+
+      void kfar(Node root,int d,int k)
+      {
+        
+        
+            ArrayList<Node> nlist = nodeTorootpath2(root, d);// to get node to root path
+            for(int i=0;i<nlist.size() && i<=k;i++)
+            {
+            if(i==0)
+            {
+                kdown(nlist.get(i),null,k-i);
+            }
+            else
+            {
+              kdown(nlist.get(i),nlist.get(i-1),k-i);
+            
+            }
+            
+            }    
+      
+      }
+      void removeLeaves(Node root,Node parent)
+      {
+          if(parent==null)
+              return;
+    if(root.left!=null &&root.right!=null)
+      {
+          parent=root;
+          removeLeaves(root.left,parent);
+          removeLeaves(root.right,parent);
+      }
+      else if(root.left==null)
+      {
+         if(parent.left==root)
+          parent.left=null;
+          if(parent.right==root)
+          parent.right=null;
+      }
+      else if(root.right==null)
+      {
+      
+        if(parent.left==root)
+          parent.left=null;
+          if(parent.right==root)
+          parent.right=null;
+      }
+
+      }
+      Node removeLeaves2(Node root)
+      {
+      
+      
+      if(root==null)
+          return null;
+      if(root.left!=null && root.left.left==null && root.right.right==null)
+      {
+      return null;
+      }
+      if(root.right!=null && root.left.left==null && root.right.right==null)
+      {
+      return null;
+      }
+      root.left=removeLeaves2(root.left);
+      root.right=removeLeaves2(root.right);
+      
+      
+      return root;
+      
+      }
+       void printSingleChild(Node root)
+      {
+      
+           if(root==null)
+              return;
+      if(root.left!=null && root.left.right==null && root.left.left!=null)
+      {
+          System.out.print(root.left.left.data);
+      }
+      if(root.left!=null && root.left.right!=null && root.left.left==null)
+      {
+          System.out.print(root.left.right.data);
+      }
+      if(root.right!=null && root.right.right==null && root.right.left!=null)
+      {
+          System.out.print(root.right.left.data);
+      }
+      if(root.right!=null && root.right.right!=null && root.right.left==null)
+      {
+          System.out.print(root.right.right.data);
+      }
+     
+          
+          printSingleChild(root.left);
+          printSingleChild(root.right);
+      
+      }
+//       void pir(Node root, int low,int high,,)
+//       {
+//       
+//       
+//       
+//       }
     
   
     public static void main(String[] args) {
         // TODO code application logic here
         int[] arr={50,25,12,-1,37,30,-1,40,-1,-1,-1,75,62,60,-1,70,-1,-1,87,-1,-1,-1};
+        int[] arr2={1,2,3,-1,5,6,8,20,22,-1,-1,21,-1,-1,9,12,14,-1,15,18,-1,19,-1,-1,-1,13,-1,-1,-1,7,10,-1,11,16,-1,17,-1,-1,-1,-1,-1,3,-1,-1};
+        int[] arr3={50,25,70,-1,-1,50,80,-1,-1,-1};
+        
         BinaryTree obj = new BinaryTree();
         Node root=obj.contruct(arr);
-        
-        System.out.println(obj.size(root));
-           System.out.println(obj.sum(root));
-           System.out.println(obj.max(root));
-            System.out.println(obj.height(root));
-        obj.display(root);
+        Node root3=obj.contruct(arr3);
+//        System.out.println(obj.size(root));
+//           System.out.println(obj.sum(root));
+//           System.out.println(obj.max(root));
+//            System.out.println(obj.height(root));
+//            //obj.display(root);
+//            System.out.println(obj.find(root,25));
+//            System.out.println(obj.nodeTorootpath(root, 40));
+            //obj.kdown(root, 1);
+           Node root2=obj.contruct(arr2);
+//           //obj.kfar(root2, 9, 3);
+//           obj.display(root);
+//          System.out.println("---------------------------------------------");
+//             obj.removeLeaves2(root);
+//           obj.display(root);
+           obj.printSingleChild(root2);
+            
     }
     
 }
