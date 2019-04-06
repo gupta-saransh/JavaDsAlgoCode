@@ -405,12 +405,172 @@ public class BinaryTree {
           printSingleChild(root.right);
       
       }
-//       void pir(Node root, int low,int high,,)
-//       {
-//       
-//       
-//       
-//       }
+       private void pir(Node root, int low,int high,ArrayList<Integer> path,int sum)
+       {
+       
+           if(root==null)
+               return;
+           
+           if(root.left==null && root.right==null)
+           {
+           path.add(root.data);
+           sum=sum+root.data;
+           if(sum>=low && sum<=high)
+           {
+           
+           for(int i=0;i<path.size();i++)
+               System.out.print(path.get(i)+"->");
+           
+           path.remove(root.data);
+           
+           }
+           
+           
+           
+           }
+         
+            path.add(root.data);
+            pir(root.left,low,high,path,sum);
+            pir(root.right,low,high,path,sum);
+            path.remove(root.data);
+       }
+       
+       void preOrder(Node root)
+       {
+           if(root==null)
+               return;
+           
+           System.out.print(root.data +"->");
+           preOrder(root.left);
+           preOrder(root.right);
+       
+       }
+        void InOrder(Node root)
+       {
+           if(root==null)
+               return;
+           
+          
+           InOrder(root.left);
+            System.out.print(root.data +"->");
+           InOrder(root.right);
+       
+       }
+        
+         void postOrder(Node root)
+       {
+           if(root==null)
+               return;
+           
+          
+           postOrder(root.left);
+           postOrder(root.right);
+            System.out.print(root.data +"->");
+       
+       }
+         Node construct1(int[] pre,int[] in,int prestrt,int prend,int instrt,int inend)
+         {
+             if(prestrt>prend || instrt>inend)
+             {
+             return null;
+             }
+             Node root = new Node(pre[prestrt]);
+             int lhs=0;
+             
+             for(int i=instrt;i<=inend;i++)
+             {
+             
+             if(in[i]==pre[prestrt])
+             {
+             break;
+             }
+             else
+             {
+             
+             lhs++;
+             }
+             
+             }
+             root.left=construct1(pre, in, prestrt+1, prestrt+lhs, instrt, instrt+lhs-1);
+             root.right=construct1(pre, in, prestrt+lhs+1, prend, instrt+lhs+1, inend);
+         
+         return root;
+         }
+        
+         Node construct2(int[] post,int[] in,int poststrt,int postend,int instrt,int inend)
+         {
+             if(poststrt>postend || instrt>inend)
+                 return null;
+         Node root= new Node(post[postend]);
+         
+         int lhs=0;
+         
+         for(int i=instrt;i<=inend;i++)   
+         {
+         
+             if(in[i]==post[postend])
+             {
+             break;
+            }
+             else
+             {
+             lhs++;
+             }
+         
+         }
+         
+         root.left=construct2(post, in, poststrt, poststrt+lhs-1, instrt, instrt+lhs-1);
+         root.right=construct2(post, in, poststrt+lhs, postend-1, instrt+lhs+1, inend);
+
+         
+         return root;
+         
+         }
+         Node construct3(int[] pre,int[] post,int prestrt,int prend,int poststrt,int postend)
+         {
+             if(prestrt>prend|| poststrt>postend)
+                 return null;
+            if(prestrt==prend)
+            {
+                Node root = new Node(pre[prestrt]);
+                root.left=null;
+                root.right=null;
+                return root;
+            
+            }
+            Node root = new Node(pre[prestrt]);
+
+            int lhs=1;
+           for(int i=poststrt;i<=postend-1;i++)
+           {
+           if(post[i]==pre[prestrt+1])
+           {
+           break;
+           }
+           else
+           {
+           lhs++;
+           }
+
+           }
+         root.left = construct3(pre, post, prestrt+1, prestrt+lhs, poststrt, poststrt+lhs-1);
+         root.right= construct3(pre, post, prestrt+lhs+1, prend, poststrt+lhs, postend-1);
+      
+         return root;  
+         }
+         
+         Node construct4()
+         {
+         
+         
+         
+         
+         
+         
+         
+         
+         }
+           
     
   
     public static void main(String[] args) {
@@ -436,7 +596,21 @@ public class BinaryTree {
 //          System.out.println("---------------------------------------------");
 //             obj.removeLeaves2(root);
 //           obj.display(root);
-           obj.printSingleChild(root2);
+           //obj.printSingleChild(root2);
+        
+          // System.out.print(obj.pir(root,10,240,null,0));
+//           obj.preOrder(root);
+//           System.out.println();
+//           obj.postOrder(root);
+//           System.out.println();
+//           obj.InOrder(root);
+           int[] pre ={50,25,12,10,37,30,75,62,87,90};
+           int[] in={10,12,25,30,37,50,62,75,87,90};
+           int[] post={10,12,30,37,25,62,90,87,75,50};
+           int[] pre1={50,25,40,30,37,20,10};
+           int[] post1={40,30,25,20,10,37,50};
+           Node rootInPre=obj.construct3(pre1, post1, 0, pre1.length-1, 0, post1.length-1);
+           obj.display(rootInPre);
             
     }
     
