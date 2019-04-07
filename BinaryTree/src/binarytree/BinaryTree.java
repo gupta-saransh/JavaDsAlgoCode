@@ -19,8 +19,7 @@ public class BinaryTree {
         Node right;
         Node(int data)
         {
-        this.data=data;
-        
+        this.data=data;   
         }
     
     
@@ -559,25 +558,200 @@ public class BinaryTree {
          return root;  
          }
          
-         Node construct4()
+         Node construct4(int[] da,int[] pa)
          {
+             Node[] narr = new Node[100];
+             
+            Node root = null;
+             for(int i=0;i<da.length;i++)
+             {
+                 
+                 narr[da[i]] = new Node(da[i]);
+             
+             }
+             for(int i=0;i<pa.length;i++)
+             {
+                  Node mnode = narr[da[i]];
+             if(pa[i]==-1)
+             { 
+                 root=mnode;
+             }
+             else
+             {
+             
+             Node parent =narr[pa[i]];
+             
+             if(parent.left==null)
+                 parent.left=mnode;
+             else
+                 parent.right=mnode;
+            
+             
+             }
+             
+             
+             }
+        
+         return root;
+         }
+           int diameter(Node root)
+           {
+               if(root==null || root.left==null|| root.right==null)
+               {  return 0;}
+              int maxHeight;
+              int maxRtree,maxLtree;
+              maxRtree=height(root.left);
+              maxLtree=height(root.right);
+              
+              int dial=diameter(root.left);
+              int diar=diameter(root.right);
+              
+             maxHeight=Math.max(maxLtree+maxRtree+1, Math.max(diar,dial));
+              return maxHeight;
+              
+           }
+           class diapair
+           {
+           public int ht=0;
+           public int dia=0;
+           
+           }
+           diapair diameter2(Node root)
+           {
+               if(root==null)
+               {   diapair bp = new diapair();
+               bp.ht=0;
+               bp.dia=0;
+               return bp;
+               }
+               diapair lp= diameter2(root.left);
+               diapair rp = diameter2(root.right);
+               
+               diapair mp = new diapair();
+               mp.dia=Math.max(lp.dia+rp.dia+1,Math.max(lp.dia, rp.dia));
+               mp.ht=lp.ht+rp.ht+1;
+           
+          
+           return mp;
+           }
+           
+           class BalancePair{
+           
+           public int ht=0;
+           public boolean bal=true;
+           
+           
+           }
+           
+          BalancePair isBalanced(Node root)
+           {
+           if(root==null)
+           {
+           BalancePair bp = new BalancePair();
+           bp.ht=0;
+           bp.bal=true;
+           return bp;
+           }
+           
+           
+           BalancePair lh=isBalanced(root.left);
+           BalancePair rh=isBalanced(root.right);
+           
+           BalancePair fin = new BalancePair();
+           fin.bal=lh.bal&&rh.bal&&(lh.ht-rh.ht)<=1;
+           fin.ht=Math.max(lh.ht, rh.ht)+1;
+           
+           return fin;
+           
+           }
+         class BstPair{
          
-         
-         
-         
-         
-         
-         
+         public int min=Integer.MAX_VALUE;
+         public int max=Integer.MIN_VALUE;
+         public boolean bst=true;
+         public Node root1;
+         public int size;
          
          }
-           
-    
+         BstPair isBst(Node root)
+         {
+             if(root==null)
+             {
+             BstPair bp = new BstPair();
+             bp.bst=true;
+             bp.min=Integer.MAX_VALUE;
+             bp.max=Integer.MIN_VALUE;
+             return bp;
+             
+             }
+         
+         BstPair lp = isBst(root.left);
+         BstPair rp = isBst(root.right);
+         
+         BstPair mp = new BstPair();
+         
+         mp.bst=lp.bst &&rp.bst && root.data>lp.max &&root.data<rp.min;
+         mp.min=Math.min(root.data, Math.min(lp.min, rp.min));
+         mp.max=Math.max(root.data, Math.max(lp.max, rp.max));
+         
+         return mp;
+        
+         
+         }
+         BstPair LargestBst(Node root)
+         {
+         if(root==null)
+             {
+             BstPair bp = new BstPair();
+             bp.bst=true;
+             bp.min=Integer.MAX_VALUE;
+             bp.max=Integer.MIN_VALUE;
+             bp.size=0;
+             bp.root1=null;
+             return bp;
+             
+             }
+         BstPair lp = LargestBst(root.left);
+         BstPair rp = LargestBst(root.right);
+         
+         BstPair mp = new BstPair();
+         
+         mp.bst=lp.bst &&rp.bst && root.data>lp.max &&root.data<rp.min; //gives if tree is bst
+         mp.min=Math.min(root.data, Math.min(lp.min, rp.min));
+         mp.max=Math.max(root.data, Math.max(lp.max, rp.max));
+          mp.root1=root;
+         if(mp.bst==true) //Only find size when it is a bsp
+         {
+         mp.root1=root;
+         mp.size=lp.size+rp.size+1;
+         
+         }
+         if(mp.bst==false) // As soon as it fails check which size is greater and return stuff
+         {
+         if(lp.size>rp.size)
+         {
+         mp.size=lp.size;
+         mp.root1=lp.root1;
+         
+         }
+         else
+         {
+         mp.size=rp.size;
+         mp.root1=rp.root1;
+         
+         }
+         
+         }
+        
+         
+         return mp;
+         }
   
     public static void main(String[] args) {
         // TODO code application logic here
         int[] arr={50,25,12,-1,37,30,-1,40,-1,-1,-1,75,62,60,-1,70,-1,-1,87,-1,-1,-1};
         int[] arr2={1,2,3,-1,5,6,8,20,22,-1,-1,21,-1,-1,9,12,14,-1,15,18,-1,19,-1,-1,-1,13,-1,-1,-1,7,10,-1,11,16,-1,17,-1,-1,-1,-1,-1,3,-1,-1};
-        int[] arr3={50,25,70,-1,-1,50,80,-1,-1,-1};
+        int[] arr3={50,25,70,-1,-1,60,80,90,-1,-1,-1,-1};
         
         BinaryTree obj = new BinaryTree();
         Node root=obj.contruct(arr);
@@ -604,13 +778,24 @@ public class BinaryTree {
 //           obj.postOrder(root);
 //           System.out.println();
 //           obj.InOrder(root);
-           int[] pre ={50,25,12,10,37,30,75,62,87,90};
+           int[] pre ={50,25,12,10,20,16,22,37,24,40,75,62,70,87};
            int[] in={10,12,25,30,37,50,62,75,87,90};
-           int[] post={10,12,30,37,25,62,90,87,75,50};
+           int[] post={10,16,22,20,12,24,40,37,25,70,62,87,75,50};
            int[] pre1={50,25,40,30,37,20,10};
            int[] post1={40,30,25,20,10,37,50};
-           Node rootInPre=obj.construct3(pre1, post1, 0, pre1.length-1, 0, post1.length-1);
-           obj.display(rootInPre);
+          Node rootInPre=obj.construct3(pre, post, 0, pre.length-1, 0, post.length-1);
+//           obj.display(rootInPre);
+           int[] dataArray={30,40,37,50,25,75,62,87,12};
+           int[] parentArray={37,37,25,-1,50,50,75,75,25};
+           //int[]
+           //Node r1=obj.construct4(dataArray, parentArray);
+//           System.out.print(obj.diameter(r1));
+//           diapair pair=obj.diameter2(root);
+//           System.out.println(pair.dia);
+//           System.out.print(obj.isBalanced(root3).bal);
+//           System.out.print(obj.isBst(root3).bst);
+          // obj.display(rootInPre);
+           System.out.print(obj.LargestBst(rootInPre).root1.data +" "+obj.LargestBst(rootInPre).size+" ");
             
     }
     
