@@ -5,11 +5,12 @@
  */
 package hashmap;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 /**
  *
- * @author test
+ * @author Saransh
  */
 public class HashMapDemo {
 
@@ -33,7 +34,9 @@ public class HashMapDemo {
            mp.put("India",145);
            mp.put("Sweden",10);
             System.out.println(mp);
-             System.out.println(mp.keySet());
+            // System.out.println(mp.keySet());
+             ArrayList<String> keys = new ArrayList<>(mp.keySet());
+             System.out.print(keys);
          
         
     }
