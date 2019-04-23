@@ -139,10 +139,10 @@ public class Trie {
         obj.addWord(root, "see");
         obj.addWord(root, "sea");
         obj.addWord(root, "seen");
-        obj.removeWord(root,"as");
+        obj.removeWord(root, "as");
         obj.displayTrie(root);
         System.out.println("-------------------------------");
-        obj.removeWord(root,"as");
+        obj.removeWord(root, "as");
         obj.displayTrie(root);
         //obj.displayWord(root, "");
         //System.out.print(obj.searchWord(root, "sea"));
