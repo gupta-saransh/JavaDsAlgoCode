@@ -12,21 +12,21 @@ import java.util.LinkedList;
  *
  * @author Saransh
  */
-public class MyHashMap {
-
+public class MyGenericHashMap<K,V> {
+    
     private class HMnode {
 
-        Integer key;
-        String value;
+        K key;
+        V value;
 
-        HMnode(Integer key, String value) {
+        HMnode(K key, V value) {
             this.key = key;
             this.value = value;
         }
 
     }
 
-    MyHashMap() {
+    MyGenericHashMap() {
         initBuckets(4);
         size = 0;
 
@@ -46,7 +46,7 @@ public class MyHashMap {
 
     }
 
-    private int findWithinBuckets(int key, int bi) {
+    private int findWithinBuckets(K key, int bi) {
         for (int di = 0; di < buckets[bi].size(); di++) {
             HMnode node = buckets[bi].get(di);
             if (node.key.equals(key)) {
@@ -59,9 +59,9 @@ public class MyHashMap {
 
     }
 
-    private int hashFn(int key) {
+    private int hashFn(K key) {
 
-        int hc = key;
+        int hc = key.hashCode();
         int bi = Math.abs(hc) % buckets.length;
         return bi;
 
@@ -93,7 +93,7 @@ public class MyHashMap {
 
     }
 
-    public void put(int key, String value) {
+    public void put(K key, V value) {
         int bi = hashFn(key);
         int found = findWithinBuckets(key, bi);
         if (found == -1) {
@@ -118,7 +118,7 @@ public class MyHashMap {
 
     }
 
-    public String get(int key) {
+    public V get(K key) {
         int bi = hashFn(key);
         int found = findWithinBuckets(key, bi);
 
@@ -133,7 +133,7 @@ public class MyHashMap {
 
     }
 
-    public boolean containsKey(int key) {
+    public boolean containsKey(K key) {
         int bi = hashFn(key);
         int found = findWithinBuckets(key, bi);
 
@@ -147,7 +147,7 @@ public class MyHashMap {
 
     }
 
-    public String remove(int key) {
+    public V remove(K key) {
         int bi = hashFn(key);
         int found = findWithinBuckets(key, bi);
 
@@ -162,8 +162,8 @@ public class MyHashMap {
         }
     }
 
-    public ArrayList<Integer> keySet() {
-        ArrayList<Integer> list = new ArrayList<>();
+    public ArrayList<K> keySet() {
+        ArrayList<K> list = new ArrayList<>();
         for (int i = 0; i < buckets.length; i++) {
 
             for (int j = 0; j < buckets[i].size(); j++) {
@@ -188,36 +188,38 @@ public class MyHashMap {
         }
         System.out.println("--------------------------");
     }
-
+    
     public static void main(String args[]) {
-        MyHashMap obj = new MyHashMap();
-        obj.put(1, "A");
-        obj.put(2, "B");
-        obj.put(3, "C");
-        obj.put(4, "D");
-        obj.put(5, "E");
+        MyGenericHashMap obj = new MyGenericHashMap();
+        obj.put("A",1);
+        obj.put("B",2);
+        obj.put("C",3);
+        obj.put("D",4);
+        obj.put("E",5);
+        obj.display();
 
         //obj.remove(3);
         //System.out.print(obj.get(5));
-        obj.put(6, "F");
-        obj.put(7, "G");
-        obj.put(8, "H");
-        obj.display();
-        obj.put(9, "I");
-        obj.put(10, "J");
-
-        obj.display();
-        obj.put(11, "I");
-        obj.put(12, "K");
-        obj.put(13, "L");
-        obj.put(14, "M");
-        obj.put(15, "N");
-        obj.put(16, "O");
-        obj.display();
-        obj.put(17, "P");
+//        obj.put(6, "F");
+//        obj.put(7, "G");
+//        obj.put(8, "H");
+//        obj.display();
+//        obj.put(9, "I");
+//        obj.put(10, "J");
+//
+//        obj.display();
+//        obj.put(11, "I");
+//        obj.put(12, "K");
+//        obj.put(13, "L");
+//        obj.put(14, "M");
+//        obj.put(15, "N");
+//        obj.put(16, "O");
+//        obj.display();
+//        obj.put(17, "P");
         //obj.display();
         //System.out.print(obj.keySet());
 
     }
 
 }
+
