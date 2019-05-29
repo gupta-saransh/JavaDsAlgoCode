@@ -5,8 +5,10 @@
         <group>
             <file>file:/C:/Users/nic/Documents/NetBeansProjects/Graphs/src/graphs/Vertex_Farthest_Min_Problem.java</file>
             <file>file:/C:/Users/nic/Documents/NetBeansProjects/Graphs/src/graphs/Astronaut_Problem.java</file>
+            <file>file:/C:/Users/nic/Documents/NetBeansProjects/Graphs/src/graphs/Prims_Algo.java</file>
             <file>file:/C:/Users/nic/Documents/NetBeansProjects/Graphs/src/graphs/BFS_DFS.java</file>
             <file>file:/C:/Users/nic/Documents/NetBeansProjects/Graphs/src/graphs/Graphs.java</file>
+            <file>file:/C:/Users/nic/Documents/NetBeansProjects/Graphs/src/graphs/Dijkstra_Algo.java</file>
             <file>file:/C:/Users/nic/Documents/NetBeansProjects/Graphs/src/graphs/Island_Problem.java</file>
         </group>
     </open-files>

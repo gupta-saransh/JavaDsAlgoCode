@@ -35,7 +35,7 @@ public class Graphs {
 
         graph.get(v1).add(new Edge(v2, wt));
 
-        graph.get(v2).add(new Edge(v1, wt));
+        //graph.get(v2).add(new Edge(v1, wt));
 
     }
 
