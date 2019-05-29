@@ -5,7 +5,9 @@
  */
 package graphs;
 
+import static graphs.BFS_DFS.BFS;
 import java.util.ArrayList;
+import java.util.LinkedList;
 
 /**
  *
@@ -233,6 +235,30 @@ public class Graphs {
         }
 
     }
+    static String kfpath;
+    static int kfmax = Integer.MIN_VALUE;
+
+    //TO Find Floor of FLoor K times to get Kth largest path
+    static void KLargestPath(ArrayList<ArrayList<Edge>> graph, int src, int dest, boolean visited[],int sum,int k){
+      
+               int limit=Integer.MIN_VALUE;
+               String kpath="";
+               
+               for(int i=0;i<k;i++){
+               fmax=Integer.MIN_VALUE;
+               fpath="";
+               visited[src]=true;
+               String psf="";
+                   FloorPath(graph, src, dest, visited,psf+ src,sum, limit);
+                   //fp and fpd will contain values
+                   limit=fmax;
+                   psf=fpath;
+               
+               }
+              
+    
+    } 
+  
 
     public static void main(String[] args) {
         // TODO code application logic here
@@ -267,8 +293,12 @@ public class Graphs {
         System.out.println(spath);
         CeilPath(graph, 0, 6, visited, "0->", 0, 45);
         System.out.println(cpath);
-        FloorPath(graph, 0, 6, visited, "0->", 0, 45);
-        System.out.println(fpath);
+        //FloorPath(graph, 0, 6, visited, "0->", 0, 45);
+
+        KLargestPath(graph, 0, 6, visited, 0, 0);
+        System.out.println(fpath + fmax);
+        
+          
     }
 
 }
