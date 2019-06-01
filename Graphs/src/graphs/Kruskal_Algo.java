@@ -7,12 +7,20 @@ package graphs;
 
 import static graphs.Graphs.*;
 import java.util.*;
+//COMMENT 1 LINE IN ADDEDGE TO MAKE THIS WORK
 
 /**
  *
  * @author Saransh Gupta
  */
 public class Kruskal_Algo {
+    static void addEdge(ArrayList<ArrayList<Edge>> graph, int v1, int v2, int wt) {
+
+        graph.get(v1).add(new Edge(v2, wt));
+
+   
+    }
+
 
     static class KEdge implements Comparable<KEdge> {
 
