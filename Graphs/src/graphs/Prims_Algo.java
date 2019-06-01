@@ -6,13 +6,13 @@
 package graphs;
 /*
 
-USED TO MAKE MINIMUM SPANNING TREE
+ USED TO MAKE MINIMUM SPANNING TREE
 
-MSP= A TREE CONTATING ALL VERTICES CONNECTED BY MINIMUM PATH BETWEEN THE EDGES
+ MSP= A TREE CONTATING ALL VERTICES CONNECTED BY MINIMUM PATH BETWEEN THE EDGES
 
-MINIMUM PATH FOUND BY SEEING LOCAL WEIGHTS
+ MINIMUM PATH FOUND BY SEEING LOCAL WEIGHTS
 
-*/
+ */
 
 import static graphs.Graphs.*;
 import java.util.ArrayList;
@@ -68,8 +68,6 @@ public class Prims_Algo {
             } else {
                 addEdge(rgraph, rem.vertex, rem.parent, rem.localWt);
             }
-
-           
 
             for (int n = 0; n < graph.get(rem.vertex).size(); n++) {
 

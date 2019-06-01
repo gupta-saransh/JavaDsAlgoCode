@@ -3,13 +3,12 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/nic/Documents/NetBeansProjects/Graphs/src/graphs/Vertex_Farthest_Min_Problem.java</file>
-            <file>file:/C:/Users/nic/Documents/NetBeansProjects/Graphs/src/graphs/Astronaut_Problem.java</file>
             <file>file:/C:/Users/nic/Documents/NetBeansProjects/Graphs/src/graphs/Prims_Algo.java</file>
-            <file>file:/C:/Users/nic/Documents/NetBeansProjects/Graphs/src/graphs/BFS_DFS.java</file>
+            <file>file:/C:/Users/nic/Documents/NetBeansProjects/Graphs/src/graphs/BellmanFord_Algo.java</file>
             <file>file:/C:/Users/nic/Documents/NetBeansProjects/Graphs/src/graphs/Graphs.java</file>
             <file>file:/C:/Users/nic/Documents/NetBeansProjects/Graphs/src/graphs/Dijkstra_Algo.java</file>
-            <file>file:/C:/Users/nic/Documents/NetBeansProjects/Graphs/src/graphs/Island_Problem.java</file>
+            <file>file:/C:/Users/nic/Documents/NetBeansProjects/Graphs/src/graphs/Floyd_Warshal.java</file>
+            <file>file:/C:/Users/nic/Documents/NetBeansProjects/Graphs/src/graphs/Kruskal_Algo.java</file>
         </group>
     </open-files>
 </project-private>
